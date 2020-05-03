@@ -1,0 +1,73 @@
+# VSCode Snippet Generator
+
+Snippets for Visual Code are JSON files.
+
+Writing JSON files are not alwyas user-friendly, especially when a snippets span multilines.
+
+Another possible tool is https://snippet-generator.app/ to generate one snippet.
+
+**VSCode Snippet Generator** targets to ease the process by:
+
+- Proposing a template mechanism
+- Generating several snippets at once that can be imported easily in VSCode
+- Versioning snippets
+
+At some point, the snippets generated and encompassed in this repository might become an VSCode extension.
+
+## Templates
+
+### Template format
+
+A template is composed of a "front-matter", as used by https://jekyllrb.com/docs/front-matter/[Jekyll]. 
+It is a YAML used that is directly mapped to the content of the snippet. In this YAML, you can define:
+
+`prefix`:: The alias used to trigger the snippet.
+`name` (optional):: Name of the snippets. Use in VSCode if description not present. if missing, `name` is equal to name of the file.
+`description`(optional):: Optional description of the snippet displayed by IntelliSense.
+`scope`(optional):: Snippets can be https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-scope[scoped] to language or a project. If no `scope` property is given, then the global snippet is available in all languages.
+
+The `body` of the template will be replaced by the content of the template.
+
+### Template example
+
+----
+---
+name: For Loop
+prefix:
+    - for
+    - for-const
+description: A for loop.
+---
+for (const ${2:element} of ${1:array}) {
+    $0
+}
+----
+
+### Template organization
+
+TBD
+
+
+## How to generate snippets
+
+### Requirements
+
+The module https://github.com/cloudbase/powershell-yaml[powershell-yaml] is required.
+
+If not already installed, execute:
+
+    Install-Module powershell-yaml -Scope CurrentUser
+
+### Go!
+
+    .\VSCode-Snippet-Generator.ps1
+
+## How to use snippets
+
+Generate the snippets and copy the content of `.\snippets` to `%appdata%\Code\User\snippets`.
+
+You can open the folder `%appdata%\Code\User\snippets`, using kbd:[Win+R].
+
+## References
+
+https://code.visualstudio.com/docs/editor/userdefinedsnippets[Snippets in Visual Studio Code]
