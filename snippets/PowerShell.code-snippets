@@ -1,0 +1,171 @@
+﻿{
+    "Parameter comment":  {
+                              "scope":  "powershell",
+                              "body":  [
+                                           ".PARAMETER $1",
+                                           "    $0"
+                                       ],
+                              "prefix":  "com-param"
+                          },
+    "Verbose value":  {
+                          "scope":  "powershell",
+                          "body":  [
+                                       "Write-Verbose \"$0: $$0\""
+                                   ],
+                          "prefix":  "verbose"
+                      },
+    "If null":  {
+                    "scope":  "powershell",
+                    "body":  [
+                                 "if (-not ($1)) {",
+                                 "    $0",
+                                 "}"
+                             ],
+                    "prefix":  "ifn"
+                },
+    "Basic comments":  {
+                           "scope":  "powershell",
+                           "body":  [
+                                        "\u003c#",
+                                        ".SYNOPSIS",
+                                        "    $1",
+                                        ".DESCRIPTION",
+                                        "    $2",
+                                        "#\u003e"
+                                    ],
+                           "prefix":  "com"
+                       },
+    "New parameter":  {
+                          "scope":  "powershell",
+                          "body":  [
+                                       "[Parameter()]",
+                                       "[string]",
+                                       "$$0,"
+                                   ],
+                          "prefix":  "param"
+                      },
+    "New reporting cmdlet":  {
+                                 "scope":  "powershell",
+                                 "body":  [
+                                              "\u003c#",
+                                              ".SYNOPSIS",
+                                              "    $1",
+                                              ".DESCRIPTION",
+                                              "    $2",
+                                              ".EXAMPLE",
+                                              "    ./$TM_FILENAME_BASE",
+                                              ".NOTES",
+                                              "    Created on $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+                                              "#\u003e",
+                                              "[cmdletbinding()]",
+                                              "param(",
+                                              "",
+                                              ")",
+                                              "BEGIN {",
+                                              "    Set-StrictMode -Version latest",
+                                              "    $ErrorActionPreference = \"stop\"",
+                                              "    $stopWatch = [system.diagnostics.stopwatch]::StartNew()",
+                                              "}",
+                                              "",
+                                              "PROCESS {",
+                                              "    #region --- Functions ---",
+                                              "",
+                                              "    #endregion Functions",
+                                              "    $0",
+                                              "}#PROCESS",
+                                              "",
+                                              "END {",
+                                              "    Write-Host \"Executed in $($stopWatch.Elapsed.ToString())\"",
+                                              "    Write-Verbose -Message \"$($MyInvocation.MyCommand.Name) Completed\"",
+                                              "}#END"
+                                          ],
+                                 "prefix":  "reporting-cmdlet"
+                             },
+    "New cmdlet":  {
+                       "scope":  "powershell",
+                       "body":  [
+                                    "\u003c#",
+                                    ".SYNOPSIS",
+                                    "    $1",
+                                    ".DESCRIPTION",
+                                    "    $2",
+                                    ".EXAMPLE",
+                                    "    ./$TM_FILENAME_BASE",
+                                    ".NOTES",
+                                    "    Created on $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+                                    "#\u003e",
+                                    "[cmdletbinding()]",
+                                    "param(",
+                                    "",
+                                    ")",
+                                    "BEGIN {",
+                                    "    Set-StrictMode -Version latest",
+                                    "    $ErrorActionPreference = \"stop\"",
+                                    "}",
+                                    "",
+                                    "PROCESS {",
+                                    "    #region --- Functions ---",
+                                    "",
+                                    "    #endregion Functions",
+                                    "    $0",
+                                    "}#PROCESS",
+                                    "",
+                                    "END {",
+                                    "    Write-Verbose -Message \"$($MyInvocation.MyCommand.Name) Completed\"",
+                                    "}#END"
+                                ],
+                       "prefix":  "cmdlet"
+                   },
+    "If not null":  {
+                        "scope":  "powershell",
+                        "body":  [
+                                     "if ($1) {",
+                                     "    $0",
+                                     "}"
+                                 ],
+                        "prefix":  "inn"
+                    },
+    "New function":  {
+                         "scope":  "powershell",
+                         "body":  [
+                                      "function $1 {",
+                                      "    [CmdletBinding()]",
+                                      "    param (       ",
+                                      "    )",
+                                      "    process {",
+                                      "        $0",
+                                      "    }",
+                                      "}"
+                                  ],
+                         "prefix":  "func"
+                     },
+    "New mandatory parameter":  {
+                                    "scope":  "powershell",
+                                    "body":  [
+                                                 "[Parameter(Mandatory=$true)]",
+                                                 "[string]",
+                                                 "$$0,"
+                                             ],
+                                    "prefix":  "mparam"
+                                },
+    "Exit if file already exists":  {
+                                        "scope":  "powershell",
+                                        "body":  [
+                                                     "if (Test-Path $$0 -PathType Leaf) {",
+                                                     "    $yes = New-Object System.Management.Automation.Host.ChoiceDescription \"\u0026Yes\"",
+                                                     "    $no = New-Object System.Management.Automation.Host.ChoiceDescription \"\u0026No\"",
+                                                     "    $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)",
+                                                     "    $title = \"$$0 already exists\"",
+                                                     "    $message = \"Do you want to overwrite it?\"",
+                                                     "",
+                                                     "    $result = $host.ui.PromptForChoice($title, $message, $options, 0)",
+                                                     "",
+                                                     "    if ($result -eq 1) {",
+                                                     "        exit",
+                                                     "    }",
+                                                     "}",
+                                                     ""
+                                                 ],
+                                        "prefix":  "file-exist"
+                                    }
+}

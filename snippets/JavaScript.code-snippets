@@ -1,0 +1,10 @@
+﻿{
+    "Print to console":  {
+                             "prefix":  "log",
+                             "body":  [
+                                          "console.log( \u0027$1\u0027, $1 );",
+                                          "$0"
+                                      ],
+                             "description":  "Log output to console"
+                         }
+}

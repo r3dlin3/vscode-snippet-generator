@@ -1,0 +1,71 @@
+﻿{
+    "Computed Property":  {
+                              "prefix":  "vcomp",
+                              "body":  [
+                                           "get $1(): ${2:string} {",
+                                           "  return $0;",
+                                           "}"
+                                       ]
+                          },
+    "Single File Components with scoped SCSS":  {
+                                                    "prefix":  "sfc-scss",
+                                                    "body":  [
+                                                                 "\u003ctemplate\u003e",
+                                                                 "  \u003cdiv\u003e\u003c/div\u003e",
+                                                                 "\u003c/template\u003e",
+                                                                 "",
+                                                                 "\u003cscript lang=\"ts\"\u003e",
+                                                                 "import { Component, Prop, Vue } from \"vue-property-decorator\";",
+                                                                 "",
+                                                                 "@Component",
+                                                                 "export default class ${0:$TM_FILENAME_BASE} extends Vue {",
+                                                                 "}",
+                                                                 "\u003c/script\u003e",
+                                                                 "",
+                                                                 "\u003cstyle scoped lang=\"scss\"\u003e\u003c/style\u003e",
+                                                                 ""
+                                                             ]
+                                                },
+    "Required Prop":  {
+                          "prefix":  "vrprop",
+                          "body":  [
+                                       "@Prop({required: true})",
+                                       "public $0!: ${1:string};"
+                                   ]
+                      },
+    "Simple Watcher":  {
+                           "prefix":  "vwat",
+                           "body":  [
+                                        "@Watch(\u0027$1\u0027)",
+                                        "nameChanged(newVal: ${2:string}) {",
+                                        "    $0",
+                                        "}"
+                                    ]
+                       },
+    "Prop":  {
+                 "prefix":  "vprop",
+                 "body":  [
+                              "@Prop()",
+                              "public ${0}!: ${1:string};"
+                          ]
+             },
+    "Single File Components":  {
+                                   "prefix":  "sfc",
+                                   "body":  [
+                                                "\u003ctemplate\u003e",
+                                                "  \u003cdiv\u003e\u003c/div\u003e",
+                                                "\u003c/template\u003e",
+                                                "",
+                                                "\u003cscript lang=\"ts\"\u003e",
+                                                "import { Component, Prop, Vue } from \"vue-property-decorator\";",
+                                                "",
+                                                "@Component",
+                                                "export default class ${0:$TM_FILENAME_BASE} extends Vue {",
+                                                "}",
+                                                "\u003c/script\u003e",
+                                                "",
+                                                "\u003cstyle\u003e\u003c/style\u003e",
+                                                ""
+                                            ]
+                               }
+}
